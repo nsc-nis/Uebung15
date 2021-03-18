@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 /* Übung 16
  * Autor: Niklas Schachl
@@ -12,26 +14,25 @@ int main()
     printf("*                                *\n");
     printf("**********************************\n");
 
-    long int random(void);
+    int seed = time(NULL);
+    srand(seed);
 
-    int secret = random()%100 + 1;
+    int secret = rand()%100 + 1;
     int guess;
     int true = -1;
 
     while (true != 0)
     {
-        printf("* --> Guess a number: \n");
+        printf("* --> Guess a number: ");
         scanf("%d", &guess);
         if (guess == secret) {
             printf("Correct! The number was %d\n", secret);
             true = 0;
         } else if (guess < secret) {
             printf("Wrong! The number you are looking for is higher!\n");
-            printf("%d -> %d \n", guess, secret);
             true = 1;
         } else if (guess > secret) {
             printf("Wrong! The number you are looking for is lower!\n");
-            printf("%d -> %d \n", guess, secret);
             true = 1;
         }
     }
